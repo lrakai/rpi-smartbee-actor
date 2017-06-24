@@ -23,7 +23,7 @@ class Configurer:
 
     def get_room_url(self):
         ''' Get room url string '''
-        return self.get_base_url + "/#/showRoom/" + self.config['DEFAULT']['room_id']
+        return self.get_base_url() + "/#/showRoom/" + self.config['DEFAULT']['room_id']
 
     def get_password(self):
         ''' Get password string '''
