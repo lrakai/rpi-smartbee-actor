@@ -14,10 +14,16 @@ def act():
     profile.set_preference("browser.fullscreen.animateUp", 0)
 
     driver = webdriver.Firefox(profile)
+
+    session_file = open('.session', mode='w')
+    session_file.writelines("\n".join([driver.command_executor._url, driver.session_id]))
+    session_file.close()
+
     driver.maximize_window()
     driver.get(config.get_url())
+    driver.find_element_by_id("password").send_keys(Keys.F11)
     driver.find_element_by_id("password").send_keys(config.get_password())
-    driver.find_element_by_name("submit").click()
+    driver.find_element_by_name("Submit").click()
     while True:
         try:
             driver.find_element_by_xpath('/html/body').send_keys(Keys.F11)
