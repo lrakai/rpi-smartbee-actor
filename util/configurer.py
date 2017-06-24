@@ -17,9 +17,13 @@ class Configurer:
         self.config = configparser.ConfigParser()
         self.config.read(config_file)
 
-    def get_url(self):
-        ''' Get url string '''
+    def get_base_url(self):
+        ''' Get base url string '''
         return self.config['DEFAULT']['url']
+
+    def get_room_url(self):
+        ''' Get room url string '''
+        return self.get_base_url + "/#/showRoom/" + self.config['DEFAULT']['room_id']
 
     def get_password(self):
         ''' Get password string '''
