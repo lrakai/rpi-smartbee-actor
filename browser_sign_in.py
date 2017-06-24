@@ -20,13 +20,15 @@ def act():
     session_file.close()
 
     driver.maximize_window()
-    driver.get(config.get_url())
+    driver.get(config.get_base_url())
     driver.find_element_by_id("password").send_keys(Keys.F11)
     driver.find_element_by_id("password").send_keys(config.get_password())
     driver.find_element_by_name("Submit").click()
+    driver.get(config.get_room_url())
+    driver.find_element_by_id("chartingGroup")
     while True:
         try:
-            driver.find_element_by_xpath('/html/body').send_keys(Keys.F11)
+            driver.find_element_by_id('chartingGroup').send_keys(Keys.F11)
             sleep(10)
         except:
             pass
