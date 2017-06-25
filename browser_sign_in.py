@@ -13,6 +13,17 @@ def create_driver_profile():
     profile.set_preference("browser.fullscreen.animateUp", 0)
     return profile
 
+
+def stay_logged_in(actor):
+    ''' Log in and return to room, if necessary '''
+    try:
+        if actor.is_logged_out():
+            actor.login()
+            actor.go_to_room()
+    except:
+        pass
+
+
 def act():
     ''' stay signed in and on the target page '''
     config = Configurer()
@@ -21,18 +32,14 @@ def act():
     actor = Actor(driver, config)
 
     actor.write_session()
-
     actor.initialize()
+
     actor.login()
     actor.go_to_room()
     while True:
-        try:
-            if actor.is_logged_out():
-                actor.login()
-                actor.go_to_room()
-            sleep(10)
-        except:
-            pass
+        stay_logged_in(actor)
+        sleep(2)
+
 
 if __name__ == "__main__":
     act()
