@@ -12,7 +12,7 @@ bash run.sh
 ```
 
 ## Configuration
-You need create a configuration file in the project directory to configure how the actor behaves.
+You need create a configuration file named `smartbee_actor.conf` in the project directory to configure how the actor behaves.
 The format of the file is as follows
 ```text
 [DEFAULT]
@@ -29,3 +29,4 @@ room_id=1
 target_id=OuterContainer
 logged_out_message=There was a problem with the connection, you have been logged out
 ```
+An example is provided in `smartbee_actor.example.conf`.
