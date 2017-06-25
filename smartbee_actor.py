@@ -27,11 +27,10 @@ def stay_in_room(actor):
     try:
         if actor.is_logged_out():
             actor.login()
+        if not actor.is_in_room():
             actor.go_to_room()
-        elif not actor.is_in_room():
-            actor.go_to_room()
-    except:
-        pass
+    except Exception as exception:
+        print(repr(exception))
 
 
 def act():

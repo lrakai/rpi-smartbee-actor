@@ -2,6 +2,7 @@
 
 from time import sleep
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import NoSuchElementException
 from datetime import datetime
 import inspect
 
@@ -80,11 +81,12 @@ class Actor:
     def is_logged_out(self):
         ''' Test if the user has been logged out '''
         self._log(inspect.stack()[0][3])
-        error_container = self.driver.find_element_by_class_name(
-            "sb-login-page-content-box-error-container-content")
-        if error_container is not None:
-            return True
-        return False
+        try:
+            self.driver.find_element_by_class_name(
+                "sb-login-page-content-box-login-content")
+        except NoSuchElementException:
+            return False
+        return True
 
     def is_in_room(self):
         ''' Test if the user is in the room '''
