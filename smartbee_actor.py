@@ -14,6 +14,14 @@ def create_driver_profile():
     return profile
 
 
+def create_actor(config):
+    ''' create actor for manipulating the browser '''
+    profile = create_driver_profile()
+    driver = webdriver.Firefox(profile)
+    driver.set_page_load_timeout(400)
+    return Actor(driver, config)
+
+
 def stay_in_room(actor):
     ''' Log in and return to room, if necessary '''
     try:
@@ -29,9 +37,7 @@ def stay_in_room(actor):
 def act():
     ''' stay signed in and on the target page '''
     config = Configurer()
-    profile = create_driver_profile()
-    driver = webdriver.Firefox(profile)
-    actor = Actor(driver, config)
+    actor = create_actor(config)
 
     actor.write_session()
     actor.initialize()
