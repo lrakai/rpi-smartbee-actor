@@ -40,7 +40,7 @@ def act():
     actor.go_to_room()
     while True:
         stay_in_room(actor)
-        sleep(2)
+        sleep(config.get_logout_check_delay)
 
 
 if __name__ == "__main__":

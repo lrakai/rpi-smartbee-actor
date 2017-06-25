@@ -57,7 +57,7 @@ class Actor:
         self.driver.find_element_by_id(
             "password").send_keys(self.config.get_password())
         self.driver.find_element_by_name("Submit").click()
-        sleep(1.5)
+        sleep(self.config.get_login_delay())
 
     def go_to_base_url(self):
         ''' go to landing page of the configured site '''

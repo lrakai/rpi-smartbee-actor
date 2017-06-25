@@ -13,18 +13,5 @@ bash run.sh
 
 ## Configuration
 You need create a configuration file named `smartbee_actor.conf` in the project directory to configure how the actor behaves.
-The format of the file is as follows
-```text
-[DEFAULT]
-url=<http://hive_address:hive_port>
-password=<hive_password>
-room_id=<target_room_id>
-target_id=<target_id_to_focus_on>
-```
-The following settings will sign in when automatically signed out, return to room `1`, and focus on the graph:
-```text
-...
-room_id=1
-target_id=OuterContainer
-```
-An example is provided in `smartbee_actor.example.conf`.
+An example is provided in `smartbee_actor.example.conf`. 
+You only need to configure the `SERVER` section to have the actor sign in when automatically signed out, return to room `1`, and focus on the metrics graph.
