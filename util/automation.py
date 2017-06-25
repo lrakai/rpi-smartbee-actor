@@ -1,5 +1,6 @@
 ''' Class to act on the webdriver with pre-baked actions '''
 
+from time import sleep
 from selenium.webdriver.common.keys import Keys
 from datetime import datetime
 import inspect
@@ -15,6 +16,18 @@ class Actor:
     def _log(self, message):
         ''' log message to output '''
         print(datetime.now().isoformat() + "\tActor\t" + message)
+
+    def _focus_target(self):
+        ''' focus on the configured target id '''
+        self._log(inspect.stack()[0][3])
+        target = None
+        while target is None:
+            try:
+                self._log('attempting to focus on target')
+                target = self.driver.find_element_by_id(
+                    self.config.get_target_id())
+            except:
+                sleep(0.2)
 
     def write_session(self):
         ''' write driver session details to .session file '''
@@ -49,7 +62,7 @@ class Actor:
         ''' go to configured room '''
         self._log(inspect.stack()[0][3])
         self.driver.get(self.config.get_room_url())
-        self.driver.find_element_by_id(self.config.get_target_id())
+        self._focus_target()
 
     def is_logged_out(self):
         ''' Test if the user has been logged out '''
