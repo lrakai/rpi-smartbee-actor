@@ -6,6 +6,6 @@ if [[ $# -eq 1 ]]; then
 fi
 
 rm -f geckodriver.log
-source browser-sign-in/bin/activate
+source smartbee-actor/bin/activate
 python $script
 deactivate
