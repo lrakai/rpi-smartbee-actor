@@ -14,7 +14,7 @@ def create_driver_profile():
     return profile
 
 
-def stay_logged_in(actor):
+def stay_in_room(actor):
     ''' Log in and return to room, if necessary '''
     try:
         if actor.is_logged_out():
@@ -39,7 +39,7 @@ def act():
     actor.login()
     actor.go_to_room()
     while True:
-        stay_logged_in(actor)
+        stay_in_room(actor)
         sleep(2)
 
 
