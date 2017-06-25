@@ -34,9 +34,9 @@ class Configurer:
         return self.config['SERVER']['password']
 
     def get_login_delay(self):
-        ''' Get delay to wait for login to complete '''
-        return self.config['TIMING']['login_delay']
+        ''' Get delay float to wait for login to complete '''
+        return float(self.config['TIMING']['login_delay'])
 
     def get_logout_check_delay(self):
-        ''' Get delay for checking to see if a log out occurred '''
-        return self.config['TIMING']['logout_check_delay']
+        ''' Get delay float for checking to see if a log out occurred '''
+        return float(self.config['TIMING']['logout_check_delay'])
