@@ -32,7 +32,3 @@ class Configurer:
     def get_password(self):
         ''' Get password string '''
         return self.config['DEFAULT']['password']
-
-    def get_logged_out_message(self):
-        ''' Get message string of error that appears when logged out '''
-        return self.config['DEFAULT']['logged_out_message']

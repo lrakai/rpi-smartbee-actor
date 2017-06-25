@@ -21,13 +21,18 @@ class Actor:
         ''' focus on the configured target id '''
         self._log(inspect.stack()[0][3])
         target = None
-        while target is None:
+        retry_limit = 5
+        attempt = 1
+        while target is None and attempt <= retry_limit:
             try:
                 self._log('attempting to focus on target')
                 target = self.driver.find_element_by_id(
                     self.config.get_target_id())
             except:
+                attempt += 1
                 sleep(0.2)
+        if attempt > retry_limit:
+            self._log('maximum retry attempts reached. skipping focus...')
 
     def write_session(self):
         ''' write driver session details to .session file '''
@@ -70,9 +75,5 @@ class Actor:
         error_container = self.driver.find_element_by_class_name(
             "sb-login-page-content-box-error-container-content")
         if error_container is not None:
-            error_message = error_container.find_element_by_class_name(
-                "ng-binding")
-            if (error_message is not None
-                    and self.config.get_logged_out_message() in error_message.text()):
-                return True
+            return True
         return False
