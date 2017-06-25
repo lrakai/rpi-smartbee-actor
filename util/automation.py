@@ -49,7 +49,7 @@ class Actor:
         ''' go to configured room '''
         self._log(inspect.stack()[0][3])
         self.driver.get(self.config.get_room_url())
-        self.driver.find_element_by_id("chartingGroup")
+        self.driver.find_element_by_id(self.config.get_target_id())
 
     def is_logged_out(self):
         ''' Test if the user has been logged out '''

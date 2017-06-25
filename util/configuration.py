@@ -25,6 +25,10 @@ class Configurer:
         ''' Get room url string '''
         return self.get_base_url() + "/#/showRoom/" + self.config['DEFAULT']['room_id']
 
+    def get_target_id(self):
+        ''' Get HTML ID of target element of room '''
+        return self.config['DEFAULT']['target_id']
+
     def get_password(self):
         ''' Get password string '''
         return self.config['DEFAULT']['password']
