@@ -14,7 +14,7 @@ class Actor:
 
     def _log(self, message):
         ''' log message to output '''
-        print(datetime.isoformat() + "\tActor\t" + message)
+        print(datetime.now().isoformat() + "\tActor\t" + message)
 
     def write_session(self):
         ''' write driver session details to .session file '''
@@ -29,7 +29,7 @@ class Actor:
         ''' initialize the browser for acting upon '''
         self._log(inspect.stack()[0][3])
         self.driver.maximize_window()
-        self.driver.get_base_url()
+        self.go_to_base_url()
         self.driver.find_element_by_class_name(
             "main-container").send_keys(Keys.F11)
 
