@@ -12,9 +12,9 @@ rm geckodriver-v0.17.0-linux64.tar.gz
 pip install virtualenv
 
 # Create a virtual environment for the script
-mkdir browser-sign-in
-virtualenv browser-sign-in
-source browser-sign-in/bin/activate
+mkdir smartbee-actor
+virtualenv smartbee-actor
+source smartbee-actor/bin/activate
 pip install -U selenium configparser
 deactivate
 
