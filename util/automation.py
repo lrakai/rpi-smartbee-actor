@@ -28,6 +28,7 @@ class Actor:
                 self._log('attempting to focus on target')
                 target = self.driver.find_element_by_id(
                     self.config.get_target_id())
+                target.send_keys(Keys.CONTROL + Keys.END)
             except:
                 attempt += 1
                 sleep(0.2)
@@ -48,8 +49,7 @@ class Actor:
         self._log(inspect.stack()[0][3])
         self.driver.maximize_window()
         self.go_to_base_url()
-        self.driver.find_element_by_class_name(
-            "main-container").send_keys(Keys.F11)
+        self.full_screen()
 
     def login(self):
         ''' login when from the login page '''
@@ -58,6 +58,13 @@ class Actor:
             "password").send_keys(self.config.get_password())
         self.driver.find_element_by_name("Submit").click()
         sleep(self.config.get_login_delay())
+
+    def full_screen(self):
+        '''
+        press full screen key to make the browser full screen
+        Requires firefox 55+ https://github.com/mozilla/geckodriver/issues/766
+        '''
+        self.driver.find_element_by_tag_name("body").send_keys(Keys.F11)
 
     def go_to_base_url(self):
         ''' go to landing page of the configured site '''
