@@ -13,7 +13,7 @@ class Configurer:
     key2=value2
     '''
 
-    def __init__(self, config_file='browser_sign_in.conf'):
+    def __init__(self, config_file='smartbee_actor.conf'):
         self.config = configparser.ConfigParser()
         self.config.read(config_file)
 
