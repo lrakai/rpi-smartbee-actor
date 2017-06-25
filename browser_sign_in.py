@@ -2,37 +2,37 @@
 
 from time import sleep
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from util import configurer
+from util.configuration import Configurer
+from util.automation import Actor
 
 
-def act():
-    ''' stay signed in and on the target page '''
-    config = configurer.Configurer()
+def create_driver_profile():
+    ''' create driver profile for firefox '''
     profile = webdriver.FirefoxProfile()
     profile.set_preference("browser.fullscreen.autohide", True)
     profile.set_preference("browser.fullscreen.animateUp", 0)
+    return profile
 
+def act():
+    ''' stay signed in and on the target page '''
+    config = Configurer()
+    profile = create_driver_profile()
     driver = webdriver.Firefox(profile)
+    actor = Actor(driver, config)
 
-    session_file = open('.session', mode='w')
-    session_file.writelines("\n".join([driver.command_executor._url, driver.session_id]))
-    session_file.close()
+    actor.write_session()
 
-    driver.maximize_window()
-    driver.get(config.get_base_url())
-    driver.find_element_by_id("password").send_keys(Keys.F11)
-    driver.find_element_by_id("password").send_keys(config.get_password())
-    driver.find_element_by_name("Submit").click()
-    driver.get(config.get_room_url())
-    driver.find_element_by_id("chartingGroup")
+    actor.initialize()
+    actor.login()
+    actor.go_to_room()
     while True:
         try:
-            driver.find_element_by_id('chartingGroup').send_keys(Keys.F11)
+            if actor.is_logged_out():
+                actor.login()
+                actor.go_to_room()
             sleep(10)
         except:
             pass
-
 
 if __name__ == "__main__":
     act()
