@@ -57,6 +57,7 @@ class Actor:
         self.driver.find_element_by_id(
             "password").send_keys(self.config.get_password())
         self.driver.find_element_by_name("Submit").click()
+        sleep(1.5)
 
     def go_to_base_url(self):
         ''' go to landing page of the configured site '''
@@ -75,5 +76,13 @@ class Actor:
         error_container = self.driver.find_element_by_class_name(
             "sb-login-page-content-box-error-container-content")
         if error_container is not None:
+            return True
+        return False
+
+    def is_in_room(self):
+        ''' Test if the user is in the room '''
+        self._log(inspect.stack()[0][3])
+        current_url = self.driver.current_url()
+        if current_url == self.config.get_room_url():
             return True
         return False

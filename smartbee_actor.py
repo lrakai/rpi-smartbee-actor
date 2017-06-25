@@ -20,6 +20,8 @@ def stay_logged_in(actor):
         if actor.is_logged_out():
             actor.login()
             actor.go_to_room()
+        elif not actor.is_in_room():
+            actor.go_to_room()
     except:
         pass
 
