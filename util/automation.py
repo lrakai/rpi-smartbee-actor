@@ -89,7 +89,7 @@ class Actor:
     def is_in_room(self):
         ''' Test if the user is in the room '''
         self._log(inspect.stack()[0][3])
-        current_url = self.driver.current_url()
+        current_url = self.driver.current_url
         if current_url == self.config.get_room_url():
             return True
         return False
