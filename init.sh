@@ -3,7 +3,7 @@
 # Upgrade and install firefox and pip
 sudo apt-get update
 sudo apt-get -y dist-upgrade
-sudo apt-get install -y firefox python-pip
+sudo apt-get install -y firefox python-pip xvkbd
 sudo apt-get clean
 curl -LO https://github.com/mozilla/geckodriver/releases/download/v0.17.0/geckodriver-v0.17.0-linux64.tar.gz
 sudo tar -zxf geckodriver-v0.17.0-linux64.tar.gz -C /usr/local/bin
