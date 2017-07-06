@@ -3,7 +3,7 @@
 # Upgrade and install firefox and pip
 sudo apt-get update
 sudo apt-get -y dist-upgrade
-sudo apt-get install -y firefox python-pip xvkbd
+sudo apt-get install -y firefox python-pip xvkbd unclutter
 sudo apt-get clean
 # geckodriver=geckodriver-v0.17.0-linux64 # For x86_64 architectures
 geckodriver=geckodriver-v0.17.0-arm7hf # For ARM architectures
