@@ -1,6 +1,6 @@
 #!/bin/bash
 
-fullscreen_delay=10
+fullscreen_delay=30
 script=smartbee_actor.py
 if [[ $# -eq 1 ]]; then
     script=$1
