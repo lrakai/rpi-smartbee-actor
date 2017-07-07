@@ -50,8 +50,10 @@ class Actor:
         self._log(inspect.stack()[0][3])
         self.driver.maximize_window()
         self.go_to_base_url()
-        self.driver.execute_script("document.getElementsByTagName('body')[0].style.background = 'white'")
-        self.driver.execute_script("document.getElementsByTagName('html')[0].style.background = 'white'")
+        self.driver.execute_script(
+            "document.getElementsByTagName('body')[0].style.background = 'white'")
+        self.driver.execute_script(
+            "document.getElementsByTagName('html')[0].style.background = 'white'")
         self.full_screen()
 
     def login(self):
@@ -78,6 +80,8 @@ class Actor:
         ''' go to configured room '''
         self._log(inspect.stack()[0][3])
         self.driver.get(self.config.get_room_url())
+        self.driver.execute_script(
+            "document.getElementsByClassName('main-content-container')[0].className = 'col-xs-12 col-md-12 hero-unit main-content-container room-detail-container'")
         self._focus_target()
 
     def is_logged_out(self):
