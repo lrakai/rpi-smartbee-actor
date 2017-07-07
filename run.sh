@@ -41,6 +41,7 @@ update ()
 {   echo ">> updating the code and restarting the actor"
     stop_actor
     rsync -a --exclude found_commit rpi-smartbee-actor/ .
+    cp rpi-smartbee-actor/found_commit installed_commit
     start_actor
 }
 
