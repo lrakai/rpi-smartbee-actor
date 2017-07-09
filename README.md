@@ -9,7 +9,7 @@ Automate staying signed into and navigating to target pages of a SmartBee hive u
 - Removal of the honeycomb background styling
 
 The default view of a room metric chart looks as follows:
-<img src="https://user-images.githubusercontent.com/3911650/27997058-4451cb58-64ad-11e7-830c-d22eeb132c63.png" alt="Without actor">
+<img src="https://user-images.githubusercontent.com/3911650/27997102-57acccec-64ae-11e7-9b30-e07fc13e893e.png" alt="Without actor">
 
 When using the actor the view is as follows:
 <img src="https://user-images.githubusercontent.com/3911650/27997042-9abeb8c6-64ac-11e7-8db1-ed94f545e2f5.png" alt="With actor">
