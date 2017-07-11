@@ -51,9 +51,9 @@ class Actor:
         self.driver.maximize_window()
         self.go_to_base_url()
         self.driver.execute_script(
-            "document.getElementsByTagName('body')[0].style.background = 'indigo'")
+            "document.getElementsByTagName('body')[0].style.background = 'white'")
         self.driver.execute_script(
-            "document.getElementsByTagName('html')[0].style.background = 'indigo'")
+            "document.getElementsByTagName('html')[0].style.background = 'white'")
         self.full_screen()
 
     def login(self):
