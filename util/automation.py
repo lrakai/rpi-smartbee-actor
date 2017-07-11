@@ -82,6 +82,7 @@ class Actor:
         self.driver.get(self.config.get_room_url())
         self.driver.execute_script(
             "document.getElementsByClassName('main-content-container')[0].className = 'col-xs-12 col-md-12 hero-unit main-content-container room-detail-container'")
+        self.driver.execute_script("window.dispatchEvent(new Event('resize'))")
         self._focus_target()
 
     def is_logged_out(self):
