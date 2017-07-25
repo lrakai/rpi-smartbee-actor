@@ -40,3 +40,10 @@ class Configurer:
     def get_logout_check_delay(self):
         ''' Get delay float for checking to see if a log out occurred '''
         return float(self.config['TIMING']['logout_check_delay'])
+
+    def get_idle_refresh_delay(self):
+        ''' Get delay float for how long to wait before forcing a refresh of the page '''
+        try:
+            return float(self.config['TIMING']['idle_refresh'])
+        except:
+            return 3600
