@@ -46,4 +46,11 @@ class Configurer:
         try:
             return float(self.config['TIMING']['idle_refresh'])
         except:
-            return 3600
+            return 7200
+
+    def get_logging_level(self):
+        ''' Get level of log messages '''
+        try:
+            return self.config['Logging']['level']
+        except:
+            return 'info'

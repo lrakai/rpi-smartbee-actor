@@ -126,7 +126,8 @@ class Actor:
     def is_logged_out(self):
         ''' Test if the user has been logged out '''
         with self._lock:
-            self._log(inspect.stack()[0][3])
+            if self._config.get_logging_level() == 'debug':
+                self._log(inspect.stack()[0][3])
             if self._refresh_required is True:
                 self._refresh_cancel()
                 self._driver.execute_script('''$("a:contains('Log Out')")[0].click()''')
@@ -144,7 +145,8 @@ class Actor:
     def is_in_room(self):
         ''' Test if the user is in the room '''
         with self._lock:
-            self._log(inspect.stack()[0][3])
+            if self._config.get_logging_level() == 'debug':
+                self._log(inspect.stack()[0][3])
             current_url = self._driver.current_url
             if current_url == self._config.get_room_url():
                 return True
