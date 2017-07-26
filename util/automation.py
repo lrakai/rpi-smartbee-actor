@@ -17,6 +17,7 @@ class Actor:
         self._refresher = None
         self._refresh_required = False
         self._lock = RLock()
+        print("Configured log level is: " + self._config.get_logging_level())
 
     def _log(self, message):
         ''' log message to output '''
