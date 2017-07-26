@@ -51,6 +51,6 @@ class Configurer:
     def get_logging_level(self):
         ''' Get level of log messages '''
         try:
-            return self.config['Logging']['level']
+            return self.config['LOGGING']['level']
         except:
             return 'info'
