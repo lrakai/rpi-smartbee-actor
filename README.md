@@ -7,6 +7,8 @@ Automate staying signed into and navigating to target pages of a SmartBee hive u
 - Extending the graph across the full width of the page
 - Automatic updates from the configured Git repository 
 - Removal of the honeycomb background styling
+- Forced refresh to clean chart memory leaks
+- Configurable log level
 
 The default view of a room metric chart looks as follows:
 <img src="https://user-images.githubusercontent.com/3911650/27997102-57acccec-64ae-11e7-9b30-e07fc13e893e.png" alt="Without actor">
