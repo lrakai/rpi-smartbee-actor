@@ -5,6 +5,7 @@ from threading import Timer, RLock, current_thread
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
 from datetime import datetime
+import subprocess
 import inspect
 
 
@@ -17,6 +18,8 @@ class Actor:
         self._refresher = None
         self._refresh_required = False
         self._lock = RLock()
+        self._restarter = None
+        self._restart_config()
         print("Configured log level is: " + self._config.get_logging_level())
 
     def _log(self, message):
@@ -42,6 +45,25 @@ class Actor:
                     sleep(0.2)
             if attempt > retry_limit:
                 self._log('maximum retry attempts reached. skipping focus...')
+
+    def _restart_config(self):
+        ''' start a new restarter timer, if required '''
+        with self._lock:
+            self._log(inspect.stack()[0][3])
+            if self._config.get_system_restart_delay() > 0:
+                self._restart_start(self._config.get_system_restart_delay())
+
+    def _restart_start(self, delay):
+        with self._lock:
+            self._log(inspect.stack()[0][3])
+            self._restarter = Timer(delay, self._restart_action)
+            self._restarter.start()
+            print("Configured system restart in: " + str(delay) + "s")
+
+    def _restart_action(self):
+        with self._lock:
+            self._log(inspect.stack()[0][3])
+            subprocess.call('reboot')
 
     def _refresh_start(self):
         ''' start a new refresh timer '''

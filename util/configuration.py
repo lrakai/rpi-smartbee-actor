@@ -1,5 +1,6 @@
 ''' Configuration utility class '''
 import configparser
+import sys
 
 
 class Configurer:
@@ -47,6 +48,17 @@ class Configurer:
             return float(self.config['TIMING']['idle_refresh'])
         except:
             return 7200
+
+    def get_system_restart_delay(self):
+        ''' Get number of seconds until forcing a system restart; negative if no restart '''
+        try:
+            system_restart_delay = self.config['TIMING']['force_system_restart']
+            if(system_restart_delay.isdigit()):
+                return float(system_restart_delay)
+            else:
+                return -1
+        except:
+            return 24 * 3600
 
     def get_logging_level(self):
         ''' Get level of log messages '''
