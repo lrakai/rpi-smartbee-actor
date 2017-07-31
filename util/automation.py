@@ -21,7 +21,8 @@ class Actor:
 
     def _log(self, message):
         ''' log message to output '''
-        print(datetime.now().isoformat() + "\tthread\t" + str(current_thread().ident) + "\tActor\t" + message)
+        print(datetime.now().isoformat() + "\tthread\t" +
+              str(current_thread().ident) + "\tActor\t" + message)
 
     def _focus_target(self):
         ''' focus on the configured target id '''
@@ -120,8 +121,15 @@ class Actor:
             self._driver.execute_script(
                 "document.getElementsByClassName('main-content-container')[0].className = 'col-xs-12 col-md-12 hero-unit main-content-container room-detail-container'")
             self._driver.execute_script(
+                "document.getElementsByClassName('sb-chart-progress-container')[0].style.display = 'none'")
+            self._driver.execute_script(
+                "document.getElementsByClassName('navbar')[0].style.display = 'none'")
+            self._driver.execute_script(
+                "document.getElementsByClassName('leftNav')[0].style.display = 'none'")
+            self._driver.execute_script(
+                "document.getElementsByClassName('sb-chart-viewing-options-container')[0].style.display = 'none'")
+            self._driver.execute_script(
                 "window.dispatchEvent(new Event('resize'))")
-            self._focus_target()
             self._refresh_start()
 
     def is_logged_out(self):
@@ -131,7 +139,8 @@ class Actor:
                 self._log(inspect.stack()[0][3])
             if self._refresh_required is True:
                 self._refresh_cancel()
-                self._driver.execute_script('''$("a:contains('Log Out')")[0].click()''')
+                self._driver.execute_script(
+                    '''$("a:contains('Log Out')")[0].click()''')
                 return True
 
             try:
@@ -139,7 +148,7 @@ class Actor:
                     "sb-login-page-content-box-login-content")
             except NoSuchElementException:
                 return False
-            
+
             self._refresh_cancel()
             return True
 
